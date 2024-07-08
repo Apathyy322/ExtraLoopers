@@ -1,5 +1,5 @@
 # Extra Loopers 
-#Made by Apathyy322
+# Made by Apathyy322
 
 batch file to block task manager, registry editor, win+r, duplicate script itself in %temp% and then take user's ownership away from this folder(user won't be able to open temp). Disable any network connection, disable gpedit.msc and if booted instantly restart
 
