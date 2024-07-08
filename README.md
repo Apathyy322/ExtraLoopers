@@ -1,4 +1,7 @@
-# GUYS PLEASE DONT USE IT SINCE IT IS A MALWARE AND I AM TESTING IT ON MY VM 
-I HAD TO UPLOAD IT TO GITHUB SO I CAN MOVE IT FROM WINDOWS TO WINDOWS
-# IF YOU DOWNLOAD IT I DO NOT TAKE ANY RESPONSIBILITY FOR IT
-FOR EDUCATIONAL PURPOSES ONLY
+# Extra Loopers 
+#Made by Apathyy322
+
+batch file to block task manager, registry editor, win+r, duplicate script itself in %temp% and then take user's ownership away from this folder(user won't be able to open temp). Disable any network connection, disable gpedit.msc and if booted instantly restart
+
+# FOR EDUCATIONAL PURPOSES ONLY AND DO NOT SPREAD THIS !
+# I DO NOT TAKE ANY RESPONIBILITY FOR CAUSED DAMAGE 
